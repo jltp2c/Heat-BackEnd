@@ -60,8 +60,44 @@ router.post("/signup", async (req, res, next) => {
   // res.json("Sign Up");
 });
 
-router.get("/login", (req, res, next) => {
-  res.json("Login");
+//Login Page
+router.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Please provide username and password" });
+  }
+  try {
+    //Checks if the user already exists. Select only  the corresponding password and omits other infos. Doesn't check if the passwords match (yet)!
+    const foundUser = await User.findOne({ username }).select("password");
+    if (!foundUser) {
+      return res.status(401).json({ message: "Wrong credentials" });
+    }
+
+    //Checks the inputed password VS the user's stored password
+    const matchingPasswords = await bcrypt.compare(
+      password,
+      foundUser.password
+    );
+    if (!matchingPasswords) {
+      return res.status(401).json({ message: "Wrong credentials" });
+    }
+
+    //Creates a token, takes the secret of the .ENV file, uses the HS256 encryption algorithm. Token expires in 24h
+    const token = jsonWebToken.sign(
+      { id: foundUser._id },
+      process.env.TOKEN_SECRET,
+      { algorithm: "HS256", expiresIn: "1d" }
+    );
+
+    return res
+      .status(200)
+      .json({ token, message: "Token created and user logged in" });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

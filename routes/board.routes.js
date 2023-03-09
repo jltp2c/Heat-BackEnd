@@ -1,7 +1,8 @@
 const router = require("express").Router();
+const isAuthenticated = require("../middlewares/isAuthenticated");
 
-router.get("/", (req, res, next) => {
-  res.json("All good in here board");
+router.get("/profile", isAuthenticated, (req, res) => {
+  res.json({ user: req.user, message: "profile ok" });
 });
 
 module.exports = router;
