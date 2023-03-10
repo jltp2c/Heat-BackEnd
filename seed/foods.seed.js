@@ -6,6 +6,7 @@ require("dotenv").config();
 require("../db/index");
 
 async function dataBaseSeed() {
+  //reinitialiser le database mongodb
   await Food.deleteMany();
   await Food.create(foodData);
   mongoose.disconnect();
