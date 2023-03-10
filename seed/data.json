@@ -1,0 +1,422 @@
+[
+  {
+    "name": "Apple",
+    "calories": 52,
+    "carbohydrates": 14,
+    "protein": 0.3
+  },
+  {
+    "name": "Banana",
+    "calories": 89,
+    "carbohydrates": 23,
+    "protein": 1.1
+  },
+  {
+    "name": "Broccoli",
+    "calories": 34,
+    "carbohydrates": 7,
+    "protein": 2.8
+  },
+  {
+    "name": "Carrots",
+    "calories": 41,
+    "carbohydrates": 10,
+    "protein": 0.9
+  },
+  {
+    "name": "Cheese",
+    "calories": 402,
+    "carbohydrates": 1.3,
+    "protein": 25
+  },
+  {
+    "name": "Chicken breast",
+    "calories": 165,
+    "carbohydrates": 0,
+    "protein": 31
+  },
+  {
+    "name": "Chocolate",
+    "calories": 546,
+    "carbohydrates": 51,
+    "protein": 5.1
+  },
+  {
+    "name": "Cucumber",
+    "calories": 15,
+    "carbohydrates": 3.6,
+    "protein": 0.6
+  },
+  {
+    "name": "Egg",
+    "calories": 155,
+    "carbohydrates": 1.1,
+    "protein": 13
+  },
+  {
+    "name": "Green beans",
+    "calories": 31,
+    "carbohydrates": 7.1,
+    "protein": 1.8
+  },
+  {
+    "name": "Hamburger patty",
+    "calories": 250,
+    "carbohydrates": 0,
+    "protein": 20
+  },
+  {
+    "name": "Lentils",
+    "calories": 116,
+    "carbohydrates": 20,
+    "protein": 9
+  },
+  {
+    "name": "Milk",
+    "calories": 42,
+    "carbohydrates": 5,
+    "protein": 3.4
+  },
+  {
+    "name": "Oatmeal",
+    "calories": 68,
+    "carbohydrates": 12,
+    "protein": 2.5
+  },
+  {
+    "name": "Orange",
+    "calories": 47,
+    "carbohydrates": 12,
+    "protein": 0.9
+  },
+  {
+    "name": "Pasta",
+    "calories": 131,
+    "carbohydrates": 25,
+    "protein": 5
+  },
+  {
+    "name": "Peanut butter",
+    "calories": 588,
+    "carbohydrates": 20,
+    "protein": 25
+  },
+  {
+    "name": "Potato",
+    "calories": 77,
+    "carbohydrates": 18,
+    "protein": 2
+  },
+  {
+    "name": "Salmon",
+    "calories": 208,
+    "carbohydrates": 0,
+    "protein": 20
+  },
+  {
+"name": "Strawberries",
+"calories": 32,
+"carbohydrates": 8,
+"protein": 0.7
+},
+{
+"name": "Sweet potato",
+"calories": 86,
+"carbohydrates": 20,
+"protein": 1.6
+},
+{
+"name": "Tuna",
+"calories": 116,
+"carbohydrates": 0,
+"protein": 26
+},
+{
+"name": "Walnuts",
+"calories": 654,
+"carbohydrates": 13,
+"protein": 15
+},
+{
+"name": "Yogurt",
+"calories": 59,
+"carbohydrates": 4.7,
+"protein": 10
+},
+{
+"name": "Almonds",
+"calories": 579,
+"carbohydrates": 22,
+"protein": 21
+},
+{
+"name": "Avocado",
+"calories": 160,
+"carbohydrates": 9,
+"protein": 2
+},
+{
+"name": "Beef",
+"calories": 250,
+"carbohydrates": 0,
+"protein": 26
+},
+{
+"name": "Blueberries",
+"calories": 57,
+"carbohydrates": 14,
+"protein": 0.7
+},
+{
+"name": "Brown rice",
+"calories": 111,
+"carbohydrates": 23,
+"protein": 2.6
+},
+{
+"name": "Butter",
+"calories": 717,
+"carbohydrates": 0.1,
+"protein": 0.9
+},
+{
+"name": "Cantaloupe",
+"calories": 34,
+"carbohydrates": 8,
+"protein": 0.8
+},
+{
+"name": "Cauliflower",
+"calories": 25,
+"carbohydrates": 5,
+"protein": 2
+},
+{
+"name": "Cheddar cheese",
+"calories": 403,
+"carbohydrates": 1.3,
+"protein": 25
+},
+{
+"name": "Cherries",
+"calories": 63,
+"carbohydrates": 16,
+"protein": 1
+},
+{
+"name": "Chicken thigh",
+"calories": 209,
+"carbohydrates": 0,
+"protein": 26
+},
+{
+"name": "Baguette",
+"calories": 290,
+"carbohydrates": 56,
+"protein": 9
+}
+,
+{
+"name": "Croissant",
+"calories": 406,
+"carbohydrates": 43,
+"protein": 6.1
+}
+,
+{
+"name": "Cheese (Brie)",
+"calories": 334,
+"carbohydrates": 0.45,
+"protein": 20
+},
+{
+"name": "Cottage Cheese",
+"calories": 98,
+"carbohydrates": 3,
+"protein": 11
+}
+,
+{
+"name": "Ratatouille",
+"calories": 110,
+"carbohydrates": 9,
+"protein": 2
+}
+,
+{
+"name": "Quiche Lorraine",
+"calories": 407,
+"carbohydrates": 20,
+"protein": 12
+}
+,
+{
+"name": "Beef Bourguignon",
+"calories": 450,
+"carbohydrates": 8,
+"protein": 38
+}
+,
+{
+"name": "Coq au Vin",
+"calories": 315,
+"carbohydrates": 3,
+"protein": 32
+}
+,
+{
+"name": "Onions",
+"calories": 40,
+"carbohydrates": 9,
+"protein": 1
+},
+{
+"name": "Mushrooms",
+"calories": 22,
+"carbohydrates": 3,
+"protein": 3
+},
+{
+"name": "French Onion Soup",
+"calories": 350,
+"carbohydrates": 40,
+"protein": 10
+}
+,
+{
+"name": "Escargots",
+"calories": 230,
+"carbohydrates": 8,
+"protein": 16
+}
+,
+{
+"name": "Tartiflette",
+"calories": 620,
+"carbohydrates": 32,
+"protein": 21
+}
+,
+{
+"name": "Salade Niçoise",
+"calories": 320,
+"carbohydrates": 10,
+"protein": 28
+}
+,
+{
+"name": "Crème Brûlée",
+"calories": 300,
+"carbohydrates": 30,
+"protein": 4
+}
+,
+{
+"name": "Moules Frites",
+"calories": 640,
+"carbohydrates": 35,
+"protein": 33
+}
+,
+{
+"name": "Bouillabaisse",
+"calories": 550,
+"carbohydrates": 20,
+"protein": 50
+}
+,
+{
+"name": "Pissaladière",
+"calories": 240,
+"carbohydrates": 30,
+"protein": 6
+}
+,
+{
+"name": "Daube Provençale",
+"calories": 390,
+"carbohydrates": 8,
+"protein": 32
+}
+,
+{
+"name": "Cassoulet",
+"calories": 360,
+"carbohydrates": 33,
+"protein": 23
+}
+,
+{
+"name": "Petit Four",
+"calories": 60,
+"carbohydrates": 8,
+"protein": 1
+}
+,
+{
+"name": "Madeleines",
+"calories": 140,
+"carbohydrates": 18,
+"protein": 2
+},
+{
+"name": "Quinoa",
+"calories": 120,
+"carbohydrates": 21,
+"protein": 4
+},
+{
+"name": "Sardines",
+"calories": 208,
+"carbohydrates": 0,
+"protein": 24
+},
+{
+"name": "Shrimp",
+"calories": 85,
+"carbohydrates": 0,
+"protein": 20
+},
+{
+"name": "Soybeans",
+"calories": 141,
+"carbohydrates": 10,
+"protein": 14
+},
+{
+"name": "Tofu",
+"calories": 70,
+"carbohydrates": 2,
+"protein": 8
+},
+{
+"name": "Tomatoes",
+"calories": 18,
+"carbohydrates": 3,
+"protein": 1
+},
+{
+"name": "Walnuts",
+"calories": 185,
+"carbohydrates": 4,
+"protein": 4
+},
+{
+"name": "Watermelon",
+"calories": 46,
+"carbohydrates": 12,
+"protein": 1
+},
+{
+"name": "Zucchini",
+"calories": 33,
+"carbohydrates": 6,
+"protein": 2
+},
+{
+"name": "Lamb",
+"calories": 250,
+"carbohydrates": 0,
+"protein": 25
+}
+]
