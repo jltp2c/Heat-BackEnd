@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
+const isAuthenticated = require("../middlewares/isAuthenticated");
 
 //Sign Up page
 router.post("/signup", async (req, res, next) => {
@@ -98,6 +99,11 @@ router.post("/login", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+//rajouter route get/
+router.get("/", isAuthenticated, async (req, res, next) => {
+  res.json(req.user);
 });
 
 module.exports = router;
