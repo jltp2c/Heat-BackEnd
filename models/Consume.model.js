@@ -2,15 +2,19 @@ const { Schema, model } = require("mongoose");
 
 const consumeSchema = new Schema(
   {
-    foodConsumed: {
+    name: {
       type: String,
       required: true,
     },
-    quantityConsumed: {
+    calories: {
       type: Number,
       required: true,
     },
-    caloriesConsumed: {
+    carbohydrates: {
+      type: Number,
+      required: true,
+    },
+    protein: {
       type: Number,
       required: true,
     },
