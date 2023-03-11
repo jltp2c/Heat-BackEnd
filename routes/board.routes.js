@@ -6,6 +6,8 @@ const Profile = require("../models/Profile.model");
 //   res.json({ user: req.user, message: "profile ok" });
 // });
 
+//All routes are prefixed with /api/board
+
 router.post("/profile", async (req, res, next) => {
   try {
     const profileInfo = req.body;

@@ -4,7 +4,9 @@ const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const isAuthenticated = require("../middlewares/isAuthenticated");
 
-//Sign Up page
+//All routes are prefixed with /api/auth
+
+//*****************************Sign Up page***********************************//
 router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -61,7 +63,7 @@ router.post("/signup", async (req, res, next) => {
   // res.json("Sign Up");
 });
 
-//Login Page
+//*************************************Login Page***********************************//
 router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -102,8 +104,11 @@ router.post("/login", async (req, res, next) => {
 });
 
 //rajouter route get/
-router.get("/", isAuthenticated, async (req, res, next) => {
-  res.json(req.user);
+router.get("/", async (req, res, next) => {
+  console.log(typeof req.user);
+  console.log(req.user);
+  console.log("user is log out");
+  return res.json({ message: "user is log out" });
 });
 
 module.exports = router;
