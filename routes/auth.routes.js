@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const isAuthenticated = require("../middlewares/isAuthenticated");
+const Profile = require("../models/Profile.model");
 
 //All routes are prefixed with /api/auth
 
@@ -95,20 +96,20 @@ router.post("/login", async (req, res, next) => {
       { algorithm: "HS256", expiresIn: "1d" }
     );
 
-    return res
-      .status(200)
-      .json({ token, message: "Token created and user logged in" });
+    const hasProfile = await Profile.findOne({ user: foundUser._id });
+
+    return res.status(200).json({
+      token,
+      hasProfile: !!hasProfile, //shorthand expression that checks  if the user already has a profile (returns true if he has a profile, faulse if he doesn't)
+      message: "Token created and user logged in",
+    });
   } catch (error) {
     next(error);
   }
 });
 
-//rajouter route get/
 router.get("/", async (req, res, next) => {
-  console.log(typeof req.user);
-  console.log(req.user);
-  console.log("user is log out");
-  return res.json({ message: "user is log out" });
+  return res.json(req.user);
 });
 
 module.exports = router;
