@@ -16,7 +16,7 @@ router.post("/profile", async (req, res, next) => {
 
     const newProfile = await Profile.create({
       ...profileInfo,
-      //req.user is define in IsAuthenticated middlware. Board is protected by the middleware(IsAuth) so everything in isAuthenticated
+      //req.user is defined in the IsAuthenticated middleware. Board is protected by the middleware(IsAuth) so everything in isAuthenticated
       user: req.user._id,
     });
     res.status(201).json(newProfile);
