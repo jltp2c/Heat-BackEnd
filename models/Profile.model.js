@@ -1,15 +1,15 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const profileSchema = new Schema({
-  gender: { type: String, required: true, enum: ['woman', 'man'] },
+  gender: { type: String, required: true, enum: ["woman", "man"] },
   age: { type: Number, required: true },
   currentHeight: { type: Number, required: true },
   currentWeight: { type: Number, required: true },
-  currentImc: { type: Number, required: true },
+  currentImc: { type: Number },
   weightGoal: { type: Number, required: true },
-  dailyCaloriesGoal: { type: Number, required: true },
+  dailyCaloriesGoal: { type: Number },
 });
 
-const Profile = model('Profile', profileSchema);
+const Profile = model("Profile", profileSchema);
 
 module.exports = Profile;
