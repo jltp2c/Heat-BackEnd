@@ -4,11 +4,10 @@ const Profile = require("../models/Profile.model");
 const foodsModele = require("../models/Food.model");
 const foodsConsumeModele = require("../models/Consume.model");
 
-// router.get("/profile", isAuthenticated, (req, res) => {
-//   res.json({ user: req.user, message: "profile ok" });
-// });
-
 //All routes are prefixed with /api/board
+
+//**********Create Profile Page (front: /createprofile)**************************************************/
+//Creates the user's profile
 
 router.post("/profile", async (req, res, next) => {
   try {
@@ -25,6 +24,56 @@ router.post("/profile", async (req, res, next) => {
   }
 });
 
+//*******************Profile Page  (front:/board/profile)************************************************************/
+
+//Display the user's profile
+
+router.get("/profile", async (req, res, next) => {
+  try {
+    let profile = await Profile.find({
+      user: req.user._id,
+    });
+    res.status(200).json(profile);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Update the user's profile
+
+router.patch("/profile/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { gender, age, currentWeight, weightGoal } = req.body;
+
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      id,
+      { gender, age, currentWeight, weightGoal },
+      { new: true }
+    );
+    res.status(202).json(updatedProfile);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Delete the user's profile
+
+router.delete("/profile/:id", async (req, res) => {
+  try {
+    const profileToDelete = await Profile.findByIdAndDelete(req.params.id);
+    if (!profileToDelete) {
+      return res.status(404).json({ message: "Profile not found" });
+    } else {
+      res.status(204).json({ message: "Profile has been deleted" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+//***************Food Page**********************************************************************/
 //Get all food from API
 
 router.get("/foods", async (req, res) => {
