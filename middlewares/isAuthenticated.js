@@ -14,9 +14,9 @@ async function isAuthenticated(req, res, next) {
     //matchToken const checks the .env TOKEN_SECRET VS 'token'(req.headers.authorization)
     const matchToken = jsonWebToken.verify(token, process.env.TOKEN_SECRET);
     //User checks for an existing matchToken.id
-    console.log("matchToken :", matchToken);
+    // console.log("matchToken :", matchToken);
     const user = await User.findById(matchToken.id);
-    console.log("user :", user);
+    // console.log("user :", user);
 
     req.user = user;
 

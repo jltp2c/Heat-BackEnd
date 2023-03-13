@@ -30,10 +30,14 @@ router.post("/profile", async (req, res, next) => {
 
 router.get("/profile", async (req, res, next) => {
   try {
-    let profile = await Profile.find({
-      user: req.user._id,
-    });
-    res.status(200).json(profile);
+    // let profile = await Profile.find({
+    //   user: req.user._id,
+    // });
+    let userName = await Profile.findOne({ user: req.user._id }).populate(
+      "user"
+    );
+    console.log("le user req.user.id  est :", { user: req.user });
+    res.status(200).json(userName);
   } catch (error) {
     next(error);
   }
@@ -57,11 +61,17 @@ router.patch("/profile/:id", async (req, res, next) => {
   }
 });
 
-//Delete the user's profile
+//Delete the user's profile //to discuss with the team cause i think the way with the token is better
 
-router.delete("/profile/:id", async (req, res) => {
+router.delete("/profile", async (req, res) => {
   try {
-    const profileToDelete = await Profile.findByIdAndDelete(req.params.id);
+    await Profile.findOneAndDelete({
+      user: req.user._id,
+    });
+    res.sendStatus(204);
+
+    // console.log("le profil to delete  :", profileToDelete);
+
     if (!profileToDelete) {
       return res.status(404).json({ message: "Profile not found" });
     } else {
@@ -69,7 +79,7 @@ router.delete("/profile/:id", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: "profil not deleted" });
   }
 });
 
