@@ -12,6 +12,7 @@ async function isAuthenticated(req, res, next) {
   token = token.replace("Bearer ", "");
   try {
     //matchToken const checks the .env TOKEN_SECRET VS 'token'(req.headers.authorization)
+    console.log(token);
     const matchToken = jsonWebToken.verify(token, process.env.TOKEN_SECRET);
     //User checks for an existing matchToken.id
     // console.log("matchToken :", matchToken);

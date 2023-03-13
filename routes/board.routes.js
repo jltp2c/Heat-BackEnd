@@ -71,12 +71,6 @@ router.delete("/profile", async (req, res) => {
     res.sendStatus(204);
 
     // console.log("le profil to delete  :", profileToDelete);
-
-    if (!profileToDelete) {
-      return res.status(404).json({ message: "Profile not found" });
-    } else {
-      res.status(204).json({ message: "Profile has been deleted" });
-    }
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "profil not deleted" });
