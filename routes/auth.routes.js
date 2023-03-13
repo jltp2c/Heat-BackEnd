@@ -108,7 +108,7 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated, async (req, res, next) => {
   return res.json(req.user);
 });
 
