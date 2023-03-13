@@ -1,7 +1,7 @@
 const router = require("express").Router();
 // const isAuthenticated = require("../middlewares/isAuthenticated");
 const Profile = require("../models/Profile.model");
-const foodsModele = require("../models/Food.model");
+const foodsModel = require("../models/Food.model");
 const foodsConsumeModele = require("../models/Consume.model");
 
 //All routes are prefixed with /api/board
@@ -89,7 +89,7 @@ router.delete("/profile", async (req, res) => {
 router.get("/foods", async (req, res) => {
   try {
     //display all data foods storage
-    const food = await foodsModele.find();
+    const food = await foodsModel.find();
     res.status(200).json({ food });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
@@ -100,12 +100,12 @@ router.get("/foods", async (req, res) => {
 
 router.post("/foods/:id", async (req, res) => {
   try {
-    const foodSearched = await foodsModele.findById(req.params.id);
+    const foodSearched = await foodsModel.findById(req.params.id);
     if (!foodSearched) {
       return res.status(404).json({ message: "Food not found" });
     }
     const { name, calories, carbohydrates, protein } = foodSearched;
-    console.log("foodSEARCG", foodSearched);
+    // console.log("foodSEARCG", foodSearched);
     const consumedFood = new foodsConsumeModele({
       name,
       calories,
@@ -114,19 +114,19 @@ router.post("/foods/:id", async (req, res) => {
       user: req.user._id,
     });
     console.log("foodConsume", consumedFood);
+    //allow us to save in the mongoDB database
     await consumedFood.save();
-    res.status(200).json({ message: "Food added successfully" });
+    res.status(200).json({ message: "Food added successfully", foodSearched });
   } catch (error) {
     res.status(500).json({ message: "Server Error to add aliment" });
   }
 });
 
 //display the consume food
-router.get("/foods/:id", async (req, res) => {
+router.get("/foods/consumed", async (req, res) => {
   try {
-    const { name } = req.body;
-    const foodConsume = await foodsConsumeModele.findById(req.params.id);
-    res.json({ foodConsume, message: `Here you go, you add ${name}` });
+    const foodConsumed = await foodsConsumeModele.find();
+    res.status(200).json({ foodConsumed });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }

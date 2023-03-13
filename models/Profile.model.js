@@ -5,9 +5,11 @@ const profileSchema = new Schema({
   gender: { type: String, required: true, enum: ["Man", "Woman"] },
   age: { type: Number, required: true },
   currentHeight: { type: Number, required: true },
+
   currentWeight: { type: Number, required: true, decimal: 1 },
+
   currentImc: { type: Number },
-  weightGoal: { type: Number, required: true, decimal: 1 },
+  weightGoal: { type: Number, required: true },
   dailyCaloriesGoal: { type: Number },
 });
 
