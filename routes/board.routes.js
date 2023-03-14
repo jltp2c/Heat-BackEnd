@@ -119,7 +119,13 @@ router.post("/foods/:id", async (req, res) => {
 //display the consume food
 router.get("/foods/consumed", async (req, res) => {
   try {
-    const foodConsumed = await foodsConsumeModele.find();
+    const [today] = new Date().toISOString().split("T");
+    const midnight = new Date(today);
+    const foodConsumed = await foodsConsumeModele.find({
+      user: req.user._id,
+      createdAt: { $gt: midnight },
+    });
+    console.log(foodConsumed);
     res.status(200).json({ foodConsumed });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
