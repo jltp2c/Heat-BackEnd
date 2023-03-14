@@ -119,11 +119,18 @@ router.post("/foods/:id", async (req, res) => {
 //display the consume food
 router.get("/foods/consumed", async (req, res) => {
   try {
-    const [today] = new Date().toISOString().split("T");
+    const date = req.query.date;
+    console.log("DATE", date);
+    const [today] = new Date(date || null).toISOString().split("T");
     const midnight = new Date(today);
+    const beforeMid = new Date();
+    beforeMid.setUTCHours(23, 59, 59, 999);
+
+    console.log("CEST MIDGNIFHT", midnight);
+    console.log("CEST Before MIDGNIFHT", beforeMid);
     const foodConsumed = await foodsConsumeModele.find({
       user: req.user._id,
-      createdAt: { $gt: midnight },
+      createdAt: { $gt: midnight, $lt: beforeMid },
     });
     console.log(foodConsumed);
     res.status(200).json({ foodConsumed });
