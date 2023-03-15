@@ -25,7 +25,7 @@ router.post("/signup", async (req, res, next) => {
   //check for the length's password to be at least 6 characters
   if (password.length < 6) {
     return res.status(400).json({
-      message: "Please put at least 6 characters",
+      message: "Please put at least 6 characters for password",
     });
   }
 
