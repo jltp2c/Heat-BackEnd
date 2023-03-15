@@ -3,6 +3,7 @@ const router = require("express").Router();
 const Profile = require("../models/Profile.model");
 const foodsModel = require("../models/Food.model");
 const foodsConsumeModele = require("../models/Consume.model");
+const User = require("../models/User.model.js");
 
 //All routes are prefixed with /api/board
 
@@ -98,20 +99,22 @@ router.post("/foods/:id", async (req, res) => {
     if (!foodSearched) {
       return res.status(404).json({ message: "Food not found" });
     }
-    const { name, calories, carbohydrates, protein } = foodSearched;
+
     // console.log("foodSEARCG", foodSearched);
-    const consumedFood = new foodsConsumeModele({
-      name,
-      calories,
-      carbohydrates,
-      protein,
+    const consumed = await foodsConsumeModele.create({
+      food: foodSearched._id,
       user: req.user._id,
     });
+
+    const { food: consumedFood, createdAt } = await consumed.populate("food");
     console.log("foodConsume", consumedFood);
     //allow us to save in the mongoDB database
-    await consumedFood.save();
-    res.status(200).json({ message: "Food added successfully", foodSearched });
+
+    res
+      .status(200)
+      .json({ message: "Food added successfully", consumedFood, createdAt });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server Error to add aliment" });
   }
 });
@@ -119,19 +122,24 @@ router.post("/foods/:id", async (req, res) => {
 //display the consume food
 router.get("/foods/consumed", async (req, res) => {
   try {
-    const date = req.query.date;
-    console.log("DATE", date);
-    const [today] = new Date(date || null).toISOString().split("T");
+    const date = req.query.date ? new Date(req.query.date) : new Date();
+    // console.log("DATE", date);
+    const [today] = date.toISOString().split("T");
     const midnight = new Date(today);
-    const beforeMid = new Date();
-    beforeMid.setUTCHours(23, 59, 59, 999);
+    const nextMidnight = new Date(today);
+    nextMidnight.setDate(nextMidnight.getDate() + 1);
 
-    console.log("CEST MIDGNIFHT", midnight);
-    console.log("CEST Before MIDGNIFHT", beforeMid);
-    const foodConsumed = await foodsConsumeModele.find({
-      user: req.user._id,
-      createdAt: { $gt: midnight, $lt: beforeMid },
-    });
+    console.log(midnight, nextMidnight);
+
+    const foodConsumed = await foodsConsumeModele
+      .find({
+        user: req.user._id,
+        createdAt: { $gt: midnight, $lt: nextMidnight },
+      })
+      .populate({
+        path: "food",
+        select: { createdAt: 0, updatedAt: 0 },
+      });
     console.log(foodConsumed);
     res.status(200).json({ foodConsumed });
   } catch (error) {
