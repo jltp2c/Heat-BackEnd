@@ -8,12 +8,8 @@
     "seed" : "node seed/foods.seed.js"
   },
   "dependencies": {
-<<<<<<< Updated upstream
     "axios": "^1.3.4",
     "bcryptjs": "^2.4.3",
-=======
-    "bcrypt": "^5.1.0",
->>>>>>> Stashed changes
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
