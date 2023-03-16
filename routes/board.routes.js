@@ -59,20 +59,20 @@ router.get("/profile", async (req, res, next) => {
 //Update the user's profile
 
 router.patch("/profile/:id", async (req, res, next) => {
-  if (age < 18) {
-    return res
-      .status(400)
-      .json({ message: "You must be 18 or more to use this app" });
-  }
-  if (currentWeight < 20 || weightGoal < 20) {
-    return res
-      .status(400)
-      .json({ message: "Please provide a number greater than 20" });
-  }
-
   try {
     const { id } = req.params;
     const { gender, age, currentWeight, weightGoal } = req.body;
+
+    if (age < 18) {
+      return res
+        .status(400)
+        .json({ message: "You must be 18 or more to use this app" });
+    }
+    if (currentWeight < 20 || weightGoal < 20) {
+      return res
+        .status(400)
+        .json({ message: "Please provide a number greater than 20" });
+    }
 
     const updatedProfile = await Profile.findByIdAndUpdate(
       id,
