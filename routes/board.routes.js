@@ -12,9 +12,17 @@ const User = require("../models/User.model.js");
 
 router.post("/profile", async (req, res, next) => {
   const { gender, age, currentHeight, currentWeight, weightGoal } = req.body;
-  if (!gender || !age || !currentHeight || !currentWeight || !weightGoal) {
+  if (
+    gender === "disabled" ||
+    !gender ||
+    !age ||
+    !currentHeight ||
+    !currentWeight ||
+    !weightGoal
+  ) {
     return res.status(400).json({ message: "Please fill all fields " });
   }
+
   try {
     const profileInfo = req.body;
 
@@ -51,6 +59,17 @@ router.get("/profile", async (req, res, next) => {
 //Update the user's profile
 
 router.patch("/profile/:id", async (req, res, next) => {
+  if (age < 18) {
+    return res
+      .status(400)
+      .json({ message: "You must be 18 or more to use this app" });
+  }
+  if (currentWeight < 20 || weightGoal < 20) {
+    return res
+      .status(400)
+      .json({ message: "Please provide a number greater than 20" });
+  }
+
   try {
     const { id } = req.params;
     const { gender, age, currentWeight, weightGoal } = req.body;
