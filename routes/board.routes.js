@@ -11,6 +11,10 @@ const User = require("../models/User.model.js");
 //Creates the user's profile
 
 router.post("/profile", async (req, res, next) => {
+  const { gender, age, currentHeight, currentWeight, weightGoal } = req.body;
+  if (!gender || !age || !currentHeight || !currentWeight || !weightGoal) {
+    return res.status(400).json({ message: "Please fill all fields " });
+  }
   try {
     const profileInfo = req.body;
 
