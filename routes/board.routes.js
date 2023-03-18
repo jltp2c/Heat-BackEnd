@@ -3,7 +3,6 @@ const router = require("express").Router();
 const Profile = require("../models/Profile.model");
 const foodsModel = require("../models/Food.model");
 const foodsConsumeModele = require("../models/Consume.model");
-const User = require("../models/User.model.js");
 
 //All routes are prefixed with /api/board
 
@@ -85,16 +84,12 @@ router.patch("/profile/:id", async (req, res, next) => {
   }
 });
 
-//Delete the user's profile //to discuss with the team cause i think the way with the token is better
-
 router.delete("/profile", async (req, res) => {
   try {
     await Profile.findOneAndDelete({
       user: req.user._id,
     });
     res.sendStatus(204);
-
-    // console.log("le profil to delete  :", profileToDelete);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "profil not deleted" });
@@ -102,7 +97,7 @@ router.delete("/profile", async (req, res) => {
 });
 
 //***************Food Page**********************************************************************/
-//Get all food from API
+//Get all food from Data.json (seed in the mongoDB)
 
 router.get("/foods", async (req, res) => {
   try {
@@ -118,19 +113,20 @@ router.get("/foods", async (req, res) => {
 
 router.post("/foods/:id", async (req, res) => {
   try {
+    //search the food in the database
     const foodSearched = await foodsModel.findById(req.params.id);
     if (!foodSearched) {
       return res.status(404).json({ message: "Food not found" });
     }
 
-    // console.log("foodSEARCG", foodSearched);
+    //create the food in the consume model
     const consumed = await foodsConsumeModele.create({
       food: foodSearched._id,
       user: req.user._id,
     });
 
     const { food: consumedFood, createdAt } = await consumed.populate("food");
-    console.log("foodConsume", consumedFood);
+    // console.log("foodConsume", consumedFood);
     //allow us to save in the mongoDB database
 
     res
