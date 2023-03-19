@@ -108,7 +108,8 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.get("/", isAuthenticated, async (req, res, next) => {
+//isAutenticated is used in a get Route to log the user after the post request
+router.get("/", isAuthenticated, async (req, res) => {
   return res.json(req.user);
 });
 
